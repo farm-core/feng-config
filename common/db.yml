@@ -54,4 +54,10 @@ mybatis-plus:
     refresh: false
   configuration:
     map-underscore-to-camel-case: true
+    # 设置一级缓存级别为每次查询都清缓存
+    local-cache-scope: STATEMENT
+    # 关闭二级缓存
     cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
