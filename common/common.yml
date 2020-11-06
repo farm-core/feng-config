@@ -17,3 +17,6 @@ spring:
     host: 49.233.31.66
     port: 6379
     password:
+security:
+  jwt:
+    key: yun
