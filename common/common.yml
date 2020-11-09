@@ -20,4 +20,4 @@ spring:
 security:
   jwt:
     key: yun
-    timeOut: 60 * 30
+    timeOut: 1800
