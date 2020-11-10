@@ -17,6 +17,10 @@ spring:
     host: 49.233.31.66
     port: 6379
     password:
+  cache:
+    type: redis
+    caffeine:
+      spec: initialCapacity=10,maximumSize=200,expireAfterWrite=60s
 security:
   jwt:
     key: yun
