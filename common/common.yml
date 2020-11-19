@@ -1,5 +1,7 @@
 # rabbitmq
 spring:
+  aop:
+    auto: true
   rabbitmq:
     host: localhost
     port: 5672
