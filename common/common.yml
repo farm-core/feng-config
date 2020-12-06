@@ -7,10 +7,26 @@ spring:
     port: 5672
     username: admin
     password: admin
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+    cache:
+      channel:
+        size: 2048
+    listener:
+      simple:
+        prefetch: 10
   cache:
     type: redis
     caffeine:
       spec: initialCapacity=10,maximumSize=200,expireAfterWrite=60s
+  zipkin:
+    rabbitmq:
+      queue: zipkin
+    locator:
+      discovery:
+        enabled: true
 #日志
 logging:
   level:
