@@ -7,24 +7,59 @@ spring:
     port: 5672
     username: admin
     password: admin
-  redis:
-    database: 10
-    lettuce:
-      pool:
-        max-active: 30
-        max-idle: 10
-        min-idle: 0
-        max-wait: -1ms
-    timeout: 2000ms
-    host: 49.233.31.66
-    port: 6379
-    password:
   cache:
     type: redis
     caffeine:
       spec: initialCapacity=10,maximumSize=200,expireAfterWrite=60s
-security:
-  jwt:
-    key: yun
-    #毫秒 -- 30分钟
-    timeOut: 1800000
+#日志
+logging:
+  level:
+    org:
+      springframework: info
+    com:
+      yun: debug
+  pattern:
+    console: "%d{HH:mm:ss} [%-5level] %-36.36logger{36} [%thread] - %msg%n"
+    config: classpath:logback-spring.xml
+#actuor
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+hystrix:
+  threadpool:
+    default:
+      coreSize: 20
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 180000
+ribbon:
+  #  ribbon请求连接的超时时间
+  ConnectTimeout: 300
+  #  请求处理的超时时间
+  ReadTimeout: 200000
+  OkToRetryOnAllOperations: true
+  # 当前实例全部失败后可更换实例次数
+  MaxAutoRetriesNextServer: 1
+  # 当前实例只重试次数
+  MaxAutoRetries: 0
+  #  (MaxAutoRetries+1)*(MaxAutoRetriesNextServer+1) * (feign[maxAttempts])= 最终重试次数
+  # 使用OKhttpFeignClient
+  okhttp:
+    enabled: true
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
