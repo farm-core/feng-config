@@ -89,7 +89,7 @@
     </appender>
 
     <!--service调试日志-->
-    <appender name="clear_debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="yun_debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${log.path}/${log.name}/clear_debug.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${log.path}/${log.name}/clear_debug.%d.%i.log</fileNamePattern>

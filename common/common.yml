@@ -1,5 +1,6 @@
 # rabbitmq
 spring:
+  # 开启aop
   aop:
     auto: true
   rabbitmq:
@@ -17,27 +18,25 @@ spring:
     listener:
       simple:
         prefetch: 10
+  # 设置缓存工具以及配置信息
   cache:
     type: redis
     caffeine:
       spec: initialCapacity=10,maximumSize=200,expireAfterWrite=60s
+  # zipkin配置
   zipkin:
     rabbitmq:
       queue: zipkin
     locator:
       discovery:
         enabled: true
-#日志
-logging:
-  level:
-    org:
-      springframework: info
-    com:
-      yun: debug
-  pattern:
-    console: "%d{HH:mm:ss} [%-5level] %-36.36logger{36} [%thread] - %msg%n"
-    config: classpath:logback-spring.xml
-#actuor
+    sleuth:
+      sampler:
+        probability: 1.0F
+      baggage-keys:
+        - record_info
+        - request_ip
+# actuor服务监控暴露端口
 management:
   endpoints:
     web:
@@ -46,6 +45,7 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+# 熔断配置
 hystrix:
   threadpool:
     default:
