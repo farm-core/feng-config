@@ -38,9 +38,9 @@ spring:
         - request_ip
 # actuor服务监控暴露端口
 management:
-  health:
-    redis:
-      enabled: false
+#  health:
+#    redis:
+#      enabled: false
   endpoints:
     web:
       exposure:
@@ -48,8 +48,8 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-    shutdown:
-      enabled: true
+#    shutdown:
+#      enabled: true
 # 熔断配置
 hystrix:
   threadpool:
