@@ -1,0 +1,7 @@
+spring:
+  security:
+    oauth2:
+      jwt:
+        signingKey: yun
+        #毫秒 -- 30分钟
+        timeOut: 1800000
