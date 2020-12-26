@@ -8,6 +8,6 @@ spring:
         min-idle: 0
         max-wait: -1ms
     timeout: 2000ms
-    host: 49.233.31.66
+    host: 127.0.0.1
     port: 6379
     password:
